@@ -17,6 +17,7 @@ using Senparc.Weixin.MP.Entities.Request;
 namespace Senparc.Weixin.MP.CoreSample.Controllers
 {
     using Microsoft.Extensions.Options;
+    using Senparc.CO2NET.HttpUtility;
     using Senparc.Weixin.Entities;
     using Senparc.Weixin.HttpUtility;
     using Senparc.Weixin.MP.MvcExtension;
@@ -25,9 +26,9 @@ namespace Senparc.Weixin.MP.CoreSample.Controllers
 
     public partial class WeixinController : Controller
     {
-        public static readonly string Token = Config.DefaultSenparcWeixinSetting.Token;//与微信公众账号后台的Token设置保持一致，区分大小写。
-        public static readonly string EncodingAESKey = Config.DefaultSenparcWeixinSetting.EncodingAESKey;//与微信公众账号后台的EncodingAESKey设置保持一致，区分大小写。
-        public static readonly string AppId = Config.DefaultSenparcWeixinSetting.WeixinAppId;//与微信公众账号后台的AppId设置保持一致，区分大小写。
+        public static readonly string Token = Config.SenparcWeixinSetting.Token;//与微信公众账号后台的Token设置保持一致，区分大小写。
+        public static readonly string EncodingAESKey = Config.SenparcWeixinSetting.EncodingAESKey;//与微信公众账号后台的EncodingAESKey设置保持一致，区分大小写。
+        public static readonly string AppId = Config.SenparcWeixinSetting.WeixinAppId;//与微信公众账号后台的AppId设置保持一致，区分大小写。
 
         readonly Func<string> _getRandomFileName = () => DateTime.Now.ToString("yyyyMMdd-HHmmss") + Guid.NewGuid().ToString("n").Substring(0, 6);
 
@@ -94,7 +95,6 @@ namespace Senparc.Weixin.MP.CoreSample.Controllers
 
             try
             {
-
                 #region 记录 Request 日志
 
                 var logPath = Server.GetMapPath(string.Format("~/App_Data/MP/{0}/", DateTime.Now.ToString("yyyy-MM-dd")));
